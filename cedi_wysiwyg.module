@@ -1,0 +1,60 @@
+<?php
+/**
+ * @file
+ * Code for the Cedi Wysiwyg feature.
+ */
+
+include_once 'cedi_wysiwyg.features.inc';
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Removing all options with the exception of adaptive when adding a media image
+ * in ckeditor.
+ */
+function cedi_wysiwyg_form_media_wysiwyg_format_form_alter(&$form, &$form_state) {
+  $options = &$form['options']['format']['#options'];
+  foreach ($options as $k => $v) {
+    if ($k !== 'media_adaptive') {
+      //unset($options[$k]);
+    }
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ *
+ * @param $form
+ * @param $form_state
+ * @param $form_id
+ */
+function cedi_wysiwyg_form_alter(&$form, &$form_state, $form_id) {
+  // We need to add a CKEDITOR config.js file when on these forms. This allows
+  // us to define/override settings for the wysiwyg editor.
+  if ((isset($form['#node_edit_form']) && $form['#node_edit_form']) || $form_id === 'fieldable_panels_panes_fieldable_panels_pane_content_type_edit_form') {
+    drupal_add_js(drupal_get_path('module', 'cedi_wysiwyg') . '/ckeditor/config.js', array('type' => 'file', 'group' => JS_DEFAULT, 'scope' => 'footer'));
+    cedi_wysiwyg_css();
+  }
+}
+
+/**
+ * Implements hook_node_view().
+ *
+ * @param $node
+ * @param $view_mode
+ * @param $langcode
+ */
+function cedi_wysiwyg_node_view($node, $view_mode, $langcode) {
+  // If we are viewing the full node then we want to add custom js and css.
+  if ($view_mode === 'full') {
+    drupal_add_js(drupal_get_path('module', 'cedi_wysiwyg') . '/cedi_wysiwyg.js');
+    cedi_wysiwyg_css();
+  }
+}
+
+/**
+ * Helper to simply add a custom css file.
+ */
+function cedi_wysiwyg_css() {
+  drupal_add_css(drupal_get_path('module', 'cedi_wysiwyg') . '/ckeditor/ckeditor.css');
+}

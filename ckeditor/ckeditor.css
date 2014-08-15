@@ -1,0 +1,11 @@
+/* This file contains custom css for the cedi_wysiwyg module */
+
+/* Change the background of the ckeditor. */
+.cke_show_borders {
+  background: #999;
+}
+
+/* Define a set margin for any image added to a body field via the wysiwyg. */
+.body.field img {
+  margin: 10px;
+}
