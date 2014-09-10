@@ -1,0 +1,6 @@
+@font-face {
+  font-family: "Raleway";
+  /*src: url( ../fonts/font.eot ); *//* IE */
+  src: local("☺"), url("Raleway-Regular.tff") format("truetype"), url("Raleway-ExtraBold.ttf.tff") format("truetype"); /*non-IE*/
+  /*src: local('☺'), url('lib/fonts/soft-sugar/Softplain-webfont.woff') format('woff'), url('lib/fonts/soft-sugar/Softplain-webfont.ttf') format('truetype'), url('lib/fonts/soft-sugar/Softplain-webfont.svg#webfontTqPm2auT') format('svg');*/
+}

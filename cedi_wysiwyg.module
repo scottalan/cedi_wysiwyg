@@ -58,3 +58,13 @@ function cedi_wysiwyg_node_view($node, $view_mode, $langcode) {
 function cedi_wysiwyg_css() {
   drupal_add_css(drupal_get_path('module', 'cedi_wysiwyg') . '/ckeditor/ckeditor.css');
 }
+
+/**
+ * Implements hook_wysiwyg_editor_settings_alter().
+ */
+function cedi_wysiwyg_wysiwyg_editor_settings_alter(&$settings, $context) {
+  if (isset($context['profile']->editor)) {
+    // Set the editor height.
+    $settings['height'] = 500;
+  }
+}
