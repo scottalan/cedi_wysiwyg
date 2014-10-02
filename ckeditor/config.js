@@ -22,6 +22,7 @@ CKEDITOR.config.allowedContent = true;
 //CKEDITOR.config.extraPlugins = 'image2';
 
 // Styles
+CKEDITOR.config.format_tags = 'h1;h2;h3;h4;h5;h6'
 CKEDITOR.stylesSet.add('cedi_styles', [ /* Block Styles */
 
   // These styles are already available in the "Format" combo ("format" plugin),
@@ -29,15 +30,23 @@ CKEDITOR.stylesSet.add('cedi_styles', [ /* Block Styles */
   // placing the "Format" combo in the toolbar, maintaining the same features.
   /*
    { name: 'Paragraph',		element: 'p' },
-   { name: 'Heading 1',		element: 'h1' },
-   { name: 'Heading 2',		element: 'h2' },
-   { name: 'Heading 3',		element: 'h3' },
-   { name: 'Heading 4',		element: 'h4' },
-   { name: 'Heading 5',		element: 'h5' },
-   { name: 'Heading 6',		element: 'h6' },
+   { name: 'H 1',		element: 'h1' },
+   { name: 'H 2',		element: 'h2' },
+   { name: 'H 3',		element: 'h3' },
+   { name: 'H 4',		element: 'h4' },
+   { name: 'H 5',		element: 'h5' },
+   { name: 'H 6',		element: 'h6' },
    { name: 'Preformatted Text',element: 'pre' },
    { name: 'Address',			element: 'address' },
    */
+
+  { name: 'Paragraph',		element: 'p' },
+  { name: 'H1',		element: 'h1' },
+  { name: 'H2',		element: 'h2' },
+  { name: 'H3',		element: 'h3' },
+  { name: 'H4',		element: 'h4' },
+  { name: 'H5',		element: 'h5' },
+  { name: 'H6',		element: 'h6' },
 
   { name: 'Italic Title',		element: 'h2', styles: { 'font-style': 'italic' } },
   { name: 'Subtitle',			element: 'h3', styles: { 'color': '#aaa', 'font-style': 'italic' } },
