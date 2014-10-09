@@ -5,14 +5,9 @@
 
 	// Define changes to default configuration here. For example:
 	// CKEDITOR.config.language = 'fr';
-	// CKEDITOR.config.uiColor = '#AADC6E';
-//CKEDITOR.plugins.addExternal('ImageResize', 'plugins/imageresize/', 'plugin.js');
-//CKEDITOR.plugins.addExternal('EnhancedImage', 'plugins/image2/', 'plugin.js');
-//CKEDITOR.plugins.addExternal('LineUtils', 'plugins/lineutils/', 'plugin.js');
-//CKEDITOR.plugins.addExternal('Widget', 'plugins/widget/', 'plugin.js');
-//CKEDITOR.config.width = 850;
-CKEDITOR.config.enterMode = CKEDITOR.ENTER_DIV;
-CKEDITOR.config.shiftEnterMode = CKEDITOR.ENTER_BR;
+CKEDITOR.config.uiColor = '#e2861d'; // #AADC6E
+CKEDITOR.config.enterMode = CKEDITOR.ENTER_BR;
+CKEDITOR.config.shiftEnterMode = CKEDITOR.ENTER_P;
 CKEDITOR.config.ignoreEmptyParagraph = true;
 //CKEDITOR.config.scayt_autoStartup = true;
 CKEDITOR.config.disableNativeSpellChecker = false;
