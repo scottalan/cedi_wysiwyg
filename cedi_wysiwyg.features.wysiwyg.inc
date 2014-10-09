@@ -47,6 +47,7 @@ function cedi_wysiwyg_wysiwyg_default_profiles() {
           'BGColor' => 1,
           'Source' => 1,
           'PasteText' => 1,
+          'Font' => 1,
           'FontSize' => 1,
           'Styles' => 1,
           'Replace' => 1,
