@@ -2,9 +2,13 @@
  * @license Copyright (c) 2003-2013, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.html or http://ckeditor.com/license
  */
+(function($) {
+  $baseUrl = document.location.origin;
 
+})(jQuery);
 	// Define changes to default configuration here. For example:
 	// CKEDITOR.config.language = 'fr';
+CKEDITOR.config.baseHref = $baseUrl;
 CKEDITOR.config.uiColor = '#e2861d'; // #AADC6E
 CKEDITOR.config.enterMode = CKEDITOR.ENTER_BR;
 CKEDITOR.config.shiftEnterMode = CKEDITOR.ENTER_P;
@@ -13,8 +17,14 @@ CKEDITOR.config.ignoreEmptyParagraph = true;
 CKEDITOR.config.disableNativeSpellChecker = false;
 CKEDITOR.config.allowedContent = true;
 // Extra Plugins:
-//CKEDITOR.plugins.addExternal('EnhancedImage', 'plugins/image2/', 'plugin.js');
+//CKEDITOR.plugins.addExternal('colorbutton', 'plugins/colorbutton/', 'plugin.js');
+//CKEDITOR.config.extraPlugins = 'colorbutton';
 //CKEDITOR.config.extraPlugins = 'image2';
+
+// Font and Font background Colors
+//
+// logo-grey, logo-orange
+CKEDITOR.config.colorButton_colors = '404041,F05A28';
 
 // Styles
 CKEDITOR.config.format_tags = 'h1;h2;h3;h4;h5;h6'
@@ -128,6 +138,13 @@ CKEDITOR.stylesSet.add('cedi_styles', [ /* Block Styles */
 CKEDITOR.config.stylesSet = 'cedi_styles';
 
 // Fonts
+//
+// Font Options
+CKEDITOR.config.font_names = 'Raleway/Raleway;' + CKEDITOR.config.font_names;
+
+// Font Sizes
+CKEDITOR.config.fontSize_sizes = 'default/1.6rem;' + CKEDITOR.config.fontSize_sizes;
+
 //CKEDITOR.config.font_style =
 //{
 //  element		: 'span',
@@ -146,7 +163,3 @@ CKEDITOR.config.stylesSet = 'cedi_styles';
 //CKEDITOR.config.fontSize_defaultLabel = '16px';
 //
 //CKEDITOR.contentsCss = 'font.css';
-//CKEDITOR.config.font_names = 'Norman/Raleway-Regular; ExtraBold/Raleway-ExtraBold';
-//
-//// Font Sizes
-//CKEDITOR.config.fontSize_sizes = '10/10px;12/12px;16/16px;20/20px;24/24px;36/36px;';
