@@ -6,6 +6,45 @@
   $baseUrl = document.location.origin;
 
 })(jQuery);
+
+// This fires when text is pasted into ckeditor.
+CKEDITOR.on('instanceReady', function(ev) {
+  ev.editor.on('paste', function(evt) {
+    // Not sure this actually works.
+    evt.data.dataValue = evt.data.dataValue.replace(/&nbsp;/g,'');
+    // remove font-family, font-size, line-height, background-color, color from style
+    evt.data.dataValue = evt.data.dataValue.replace(/font-family\:[^;]+;?|font-size\:[^;]+;?|line-height\:[^;]+;?|background-color\:[^;]+;?|color\:[^;]+;?/g, '');
+    // remove if style is empty, e.g. style="" || style="   "
+    evt.data.dataValue = evt.data.dataValue.replace(/style\="\s*?"/, '');
+    // remove empty tags, e.g. <p></p>
+    evt.data.dataValue = evt.data.dataValue.replace(/<[^\/>][^>]*><\/[^>]+>/, '');
+
+    /* More Examples:
+     //remove all styles from tags
+     evt.data.dataValue = evt.data.dataValue.replace(/(<[^>]+) style=".*?"/i, '');
+     // Remove empty p tags.
+     evt.data.dataValue = evt.data.dataValue.replace(/<p><\/p>/g,'');
+     // Remove empty p tags with spaces in them.
+     evt.data.dataValue = evt.data.dataValue.replace(/<p>&nbsp;<\/p>/g,'');
+     // Remove span styles.
+     evt.data.dataValue = evt.data.dataValue.replace(/<span[^>]*>([\s\S]*?)/g,'<span>');
+     // Remove p styles.
+     evt.data.dataValue = evt.data.dataValue.replace(/<p[^>]*>([\s\S]*?)/g,'<p>');
+     // Remove div styles.
+     evt.data.dataValue = evt.data.dataValue.replace(/<div[^>]*>([\s\S]*?)/g,'<div>');
+     // Remove margin-bottom styles.
+     evt.data.dataValue = evt.data.dataValue.replace(/style="margin-bottom:.+"/g,'');
+     // Remove font face styling.
+     evt.data.dataValue = evt.data.dataValue.replace(/<font face=".+">/g,'');
+     // Remove closing font tag.
+     evt.data.dataValue = evt.data.dataValue.replace(/<\/font>/g,'');
+     */
+
+    // Log the output to console.
+    console.log(evt.data.dataValue);
+  }, null, null, 9);
+});
+
 	// Define changes to default configuration here. For example:
 	// CKEDITOR.config.language = 'fr';
 CKEDITOR.config.baseHref = $baseUrl;
@@ -15,16 +54,31 @@ CKEDITOR.config.shiftEnterMode = CKEDITOR.ENTER_P;
 CKEDITOR.config.ignoreEmptyParagraph = true;
 //CKEDITOR.config.scayt_autoStartup = true;
 CKEDITOR.config.disableNativeSpellChecker = false;
-CKEDITOR.config.allowedContent = true;
-// Extra Plugins:
-//CKEDITOR.plugins.addExternal('colorbutton', 'plugins/colorbutton/', 'plugin.js');
-//CKEDITOR.config.extraPlugins = 'colorbutton';
-//CKEDITOR.config.extraPlugins = 'image2';
+
+/*
+  Examples:
+
+ CKEDITOR.config.allowedContent = {
+ "div h1 h2 h3 h4 h5 h6 ol p pre ul em": {
+ propertiesOnly: !0,
+ styles: !a ? "font-size,background-color" : null
+ }
+ }
+
+ CKEDITOR.config.disallowedContent =
+ // Don't allow background colors on text.
+ '*{background*}';
+
+ Extra Plugins:
+ CKEDITOR.plugins.addExternal('colorbutton', 'plugins/colorbutton/', 'plugin.js');
+ CKEDITOR.config.extraPlugins = 'colorbutton';
+ CKEDITOR.config.extraPlugins = 'image2';
+ */
 
 // Font and Font background Colors
 //
 // logo-grey, logo-orange
-CKEDITOR.config.colorButton_colors = '404041,F05A28';
+CKEDITOR.config.colorButton_colors = '404041,F05A28,000000,FFFFFF';
 
 // Styles
 CKEDITOR.config.format_tags = 'h1;h2;h3;h4;h5;h6'
@@ -143,23 +197,28 @@ CKEDITOR.config.stylesSet = 'cedi_styles';
 CKEDITOR.config.font_names = 'Raleway/Raleway;' + CKEDITOR.config.font_names;
 
 // Font Sizes
-CKEDITOR.config.fontSize_sizes = 'default/1.6rem;' + CKEDITOR.config.fontSize_sizes;
+CKEDITOR.config.fontSize_sizes = 'normalize/1rem;' + CKEDITOR.config.fontSize_sizes;
 
-//CKEDITOR.config.font_style =
-//{
-//  element		: 'span',
-//  styles		: { 'font-family' : '#(family)' },
-//  overrides	: [ { element : 'font', attributes : { 'face' : null } } ]
-//};
-//
-//CKEDITOR.config.fontSize_style =
-//{
-//  element		: 'span',
-//  styles		: { 'font-size' : '#(size)' },
-//  overrides	: [ { element : 'font', attributes : { 'size' : null } } ]
-//};
-//
-//CKEDITOR.config.font_defaultLabel = 'Normal';
-//CKEDITOR.config.fontSize_defaultLabel = '16px';
-//
-//CKEDITOR.contentsCss = 'font.css';
+/*
+  Examples:
+
+ CKEDITOR.config.font_style =
+ {
+ element		: 'span',
+ styles		: { 'font-family' : '#(family)' },
+ overrides	: [ { element : 'font', attributes : { 'face' : null } } ]
+ };
+
+ CKEDITOR.config.fontSize_style =
+ {
+ element		: 'span',
+ styles		: { 'font-size' : '#(size)' },
+ overrides	: [ { element : 'font', attributes : { 'size' : null } } ]
+ };
+
+ CKEDITOR.config.font_defaultLabel = 'Normal';
+ CKEDITOR.config.fontSize_defaultLabel = '16px';
+
+ CKEDITOR.contentsCss = 'font.css';
+ */
+
