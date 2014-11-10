@@ -7,19 +7,35 @@
 
 })(jQuery);
 
-// This fires when text is pasted into ckeditor.
-CKEDITOR.on('instanceReady', function(ev) {
-  ev.editor.on('paste', function(evt) {
-    // Not sure this actually works.
-    evt.data.dataValue = evt.data.dataValue.replace(/&nbsp;/g,'');
-    // remove font-family, font-size, line-height, background-color, color from style
-    evt.data.dataValue = evt.data.dataValue.replace(/font-family\:[^;]+;?|font-size\:[^;]+;?|line-height\:[^;]+;?|background-color\:[^;]+;?|color\:[^;]+;?/g, '');
-    // remove if style is empty, e.g. style="" || style="   "
-    evt.data.dataValue = evt.data.dataValue.replace(/style\="\s*?"/, '');
-    // remove empty tags, e.g. <p></p>
-    evt.data.dataValue = evt.data.dataValue.replace(/<[^\/>][^>]*><\/[^>]+>/, '');
+// Removes spaces in empty tags. e.g., <p>&nbsp;</p>.
+CKEDITOR.config.fillEmptyBlocks = false;
 
-    /* More Examples:
+// Define changes to default configuration here. For example:
+// CKEDITOR.config.language = 'fr';
+CKEDITOR.config.baseHref = $baseUrl;
+// This is the color of the editor.
+CKEDITOR.config.uiColor = '#e2861d'; // #AADC6E
+CKEDITOR.config.enterMode = CKEDITOR.ENTER_BR;
+CKEDITOR.config.shiftEnterMode = CKEDITOR.ENTER_P;
+CKEDITOR.config.ignoreEmptyParagraph = true;
+//CKEDITOR.config.scayt_autoStartup = true;
+CKEDITOR.config.disableNativeSpellChecker = false;
+
+// This fires when text is pasted into ckeditor. Seems that the "Apply simple
+// source fomatting" setting @admin/config/content/wysiwyg/profile/[PROFILE]/edit
+// does a good job but leaving this here as an example of things we can do.
+/*CKEDITOR.on('instanceReady', function(ev) {
+  ev.editor.on('paste', function(evt) {
+
+     // Examples:
+     // Not sure this actually works.
+     evt.data.dataValue = evt.data.dataValue.replace(/&nbsp;/g,'');
+     // remove font-family, font-size, line-height, background-color, color from style
+     evt.data.dataValue = evt.data.dataValue.replace(/font-family\:[^;]+;?|font-size\:[^;]+;?|line-height\:[^;]+;?|background-color\:[^;]+;?|color\:[^;]+;?/g, '');
+     // remove if style is empty, e.g. style="" || style="   "
+     evt.data.dataValue = evt.data.dataValue.replace(/style\="\s*?"/, '');
+     // remove empty tags, e.g. <p></p>
+     evt.data.dataValue = evt.data.dataValue.replace(/<[^\/>][^>]*><\/[^>]+>/, '');
      //remove all styles from tags
      evt.data.dataValue = evt.data.dataValue.replace(/(<[^>]+) style=".*?"/i, '');
      // Remove empty p tags.
@@ -38,22 +54,11 @@ CKEDITOR.on('instanceReady', function(ev) {
      evt.data.dataValue = evt.data.dataValue.replace(/<font face=".+">/g,'');
      // Remove closing font tag.
      evt.data.dataValue = evt.data.dataValue.replace(/<\/font>/g,'');
-     */
 
     // Log the output to console.
     console.log(evt.data.dataValue);
   }, null, null, 9);
-});
-
-	// Define changes to default configuration here. For example:
-	// CKEDITOR.config.language = 'fr';
-CKEDITOR.config.baseHref = $baseUrl;
-CKEDITOR.config.uiColor = '#e2861d'; // #AADC6E
-CKEDITOR.config.enterMode = CKEDITOR.ENTER_BR;
-CKEDITOR.config.shiftEnterMode = CKEDITOR.ENTER_P;
-CKEDITOR.config.ignoreEmptyParagraph = true;
-//CKEDITOR.config.scayt_autoStartup = true;
-CKEDITOR.config.disableNativeSpellChecker = false;
+});*/
 
 /*
   Examples:
